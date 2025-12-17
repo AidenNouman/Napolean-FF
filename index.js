@@ -4,49 +4,23 @@
 
 const reveals = document.querySelectorAll('.reveal');
 
-if (reveals.length) {
+if (reveals.length > 0) {
   const revealObserver = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          observer.unobserve(entry.target); // reveal once
+          observer.unobserve(entry.target); // reveal only once
         }
       });
     },
-    { threshold: 0.15 }
+    {
+      threshold: 0.15,
+      rootMargin: '0px 0px -60px 0px'
+    }
   );
 
   reveals.forEach(el => revealObserver.observe(el));
-}
-
-/* =========================
-   NAVBAR SCROLL EFFECT
-========================= */
-
-const nav = document.querySelector('.navbar');
-
-if (nav) {
-  let lastState = false;
-
-  window.addEventListener(
-    'scroll',
-    () => {
-      const scrolled = window.scrollY > 30;
-
-      if (scrolled !== lastState) {
-        nav.style.background = scrolled
-          ? 'rgba(0,0,0,0.95)'
-          : 'rgba(0,0,0,0.9)';
-        nav.style.boxShadow = scrolled
-          ? '0 8px 25px rgba(0,0,0,0.6)'
-          : 'none';
-
-        lastState = scrolled;
-      }
-    },
-    { passive: true }
-  );
 }
 
 /* =========================
@@ -58,16 +32,41 @@ const typingTarget = document.getElementById('typing-text');
 if (typingTarget) {
   const text =
     'Elite Free Fire Zone Push Strategist & Competitive Mentor';
+
   let index = 0;
+  let speed = 45;
 
   function typeText() {
-    typingTarget.textContent += text.charAt(index);
-    index++;
-
     if (index < text.length) {
-      setTimeout(typeText, 45);
+      typingTarget.textContent += text.charAt(index);
+      index++;
+      setTimeout(typeText, speed);
     }
   }
 
-  window.addEventListener('load', typeText, { once: true });
+  // Start typing after page fully loads
+  window.addEventListener(
+    'load',
+    () => {
+      typingTarget.textContent = '';
+      typeText();
+    },
+    { once: true }
+  );
 }
+
+/* =========================
+   OPTIONAL: SMOOTH CTA FOCUS
+   (micro polish, no risk)
+========================= */
+
+const ctaButtons = document.querySelectorAll('a[href="#contact"]');
+
+ctaButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const contact = document.getElementById('contact');
+    if (contact) {
+      contact.classList.add('active');
+    }
+  });
+});

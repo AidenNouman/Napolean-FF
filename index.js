@@ -1,47 +1,41 @@
 /* =========================
-   SCROLL REVEAL (MODERN & SMOOTH)
+   GAMING SCROLL REVEAL
 ========================= */
 
-const revealElements = document.querySelectorAll('.reveal');
+const reveals = document.querySelectorAll('.reveal');
 
-const revealOnScroll = () => {
-  const triggerBottom = window.innerHeight * 0.85;
+function revealOnScroll() {
+  const triggerPoint = window.innerHeight * 0.85;
 
-  revealElements.forEach(el => {
-    const elementTop = el.getBoundingClientRect().top;
-
-    if (elementTop < triggerBottom) {
+  reveals.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if (top < triggerPoint) {
       el.classList.add('active');
     }
   });
-};
+}
 
 window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll);
 
 /* =========================
-   NAVBAR SCROLL EFFECT (OPTIMIZED)
+   NAVBAR SCROLL EFFECT
 ========================= */
 
 const nav = document.querySelector('nav');
-let lastScrollY = 0;
 
 window.addEventListener('scroll', () => {
-  const currentScroll = window.scrollY;
-
-  if (currentScroll > 30) {
-    nav.style.background = 'rgba(0, 0, 0, 0.95)';
+  if (window.scrollY > 30) {
+    nav.style.background = 'rgba(0,0,0,0.95)';
     nav.style.boxShadow = '0 8px 25px rgba(0,0,0,0.6)';
   } else {
-    nav.style.background = 'rgba(0, 0, 0, 0.85)';
+    nav.style.background = 'rgba(0,0,0,0.85)';
     nav.style.boxShadow = 'none';
   }
-
-  lastScrollY = currentScroll;
 });
 
 /* =========================
-   TYPING EFFECT (SMOOTH & SAFE)
+   TYPING EFFECT
 ========================= */
 
 const typingTarget = document.getElementById('typing-text');

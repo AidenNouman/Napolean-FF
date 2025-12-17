@@ -4,19 +4,21 @@
 
 const reveals = document.querySelectorAll('.reveal');
 
-function revealOnScroll() {
-  const triggerPoint = window.innerHeight * 0.85;
+if (reveals.length) {
+  const revealObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          revealObserver.unobserve(entry.target); // reveal once (efficient)
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
 
-  reveals.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if (top < triggerPoint) {
-      el.classList.add('active');
-    }
-  });
+  reveals.forEach(el => revealObserver.observe(el));
 }
-
-window.addEventListener('scroll', revealOnScroll);
-window.addEventListener('load', revealOnScroll);
 
 /* =========================
    NAVBAR SCROLL EFFECT
@@ -24,32 +26,47 @@ window.addEventListener('load', revealOnScroll);
 
 const nav = document.querySelector('nav');
 
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 30) {
-    nav.style.background = 'rgba(0,0,0,0.95)';
-    nav.style.boxShadow = '0 8px 25px rgba(0,0,0,0.6)';
-  } else {
-    nav.style.background = 'rgba(0,0,0,0.85)';
-    nav.style.boxShadow = 'none';
-  }
-});
+if (nav) {
+  let lastState = false;
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      const scrolled = window.scrollY > 30;
+
+      if (scrolled !== lastState) {
+        nav.style.background = scrolled
+          ? 'rgba(0,0,0,0.95)'
+          : 'rgba(0,0,0,0.85)';
+        nav.style.boxShadow = scrolled
+          ? '0 8px 25px rgba(0,0,0,0.6)'
+          : 'none';
+
+        lastState = scrolled;
+      }
+    },
+    { passive: true }
+  );
+}
 
 /* =========================
    TYPING EFFECT
 ========================= */
 
 const typingTarget = document.getElementById('typing-text');
-const text = 'Elite Free Fire Zone Push Strategist & Competitive Mentor';
-let index = 0;
 
-function typeText() {
-  if (!typingTarget) return;
+if (typingTarget) {
+  const text = 'Elite Free Fire Zone Push Strategist & Competitive Mentor';
+  let index = 0;
 
-  if (index < text.length) {
-    typingTarget.textContent += text.charAt(index);
+  function typeText() {
+    typingTarget.textContent += text[index];
     index++;
-    setTimeout(typeText, 45);
-  }
-}
 
-window.addEventListener('load', typeText);
+    if (index < text.length) {
+      setTimeout(typeText, 45);
+    }
+  }
+
+  window.addEventListener('load', typeText, { once: true });
+}

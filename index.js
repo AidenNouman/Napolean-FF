@@ -6,11 +6,11 @@ const reveals = document.querySelectorAll('.reveal');
 
 if (reveals.length) {
   const revealObserver = new IntersectionObserver(
-    entries => {
+    (entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          revealObserver.unobserve(entry.target); // reveal once (efficient)
+          observer.unobserve(entry.target); // reveal once
         }
       });
     },
@@ -24,7 +24,7 @@ if (reveals.length) {
    NAVBAR SCROLL EFFECT
 ========================= */
 
-const nav = document.querySelector('nav');
+const nav = document.querySelector('.navbar');
 
 if (nav) {
   let lastState = false;
@@ -37,7 +37,7 @@ if (nav) {
       if (scrolled !== lastState) {
         nav.style.background = scrolled
           ? 'rgba(0,0,0,0.95)'
-          : 'rgba(0,0,0,0.85)';
+          : 'rgba(0,0,0,0.9)';
         nav.style.boxShadow = scrolled
           ? '0 8px 25px rgba(0,0,0,0.6)'
           : 'none';
@@ -50,17 +50,18 @@ if (nav) {
 }
 
 /* =========================
-   TYPING EFFECT
+   TYPING EFFECT (HERO)
 ========================= */
 
 const typingTarget = document.getElementById('typing-text');
 
 if (typingTarget) {
-  const text = 'Elite Free Fire Zone Push Strategist & Competitive Mentor';
+  const text =
+    'Elite Free Fire Zone Push Strategist & Competitive Mentor';
   let index = 0;
 
   function typeText() {
-    typingTarget.textContent += text[index];
+    typingTarget.textContent += text.charAt(index);
     index++;
 
     if (index < text.length) {

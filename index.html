@@ -10,19 +10,17 @@
 
 <body>
 
-  <nav>
+  <!-- ================= NAVBAR (ONLY 4 ITEMS) ================= -->
+  <nav class="navbar">
     <ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#achievements">Achievements</a></li>
       <li><a href="#bootcamp">Bootcamp</a></li>
-      <li><a href="#highlights">Highlights</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="cta">Contact</a></li>
     </ul>
   </nav>
 
+  <!-- ================= HOME ================= -->
   <section id="home" class="reveal">
     <div>
       <img src="profile.jpg" alt="Napolean Jr.">
@@ -39,6 +37,7 @@
     </div>
   </section>
 
+  <!-- ================= ABOUT ================= -->
   <section id="about" class="reveal">
     <h2>About Me</h2>
     <p>
@@ -51,6 +50,7 @@
     </p>
   </section>
 
+  <!-- ================= SKILLS ================= -->
   <section id="skills" class="reveal">
     <h2>Core Expertise</h2>
     <ul>
@@ -62,31 +62,34 @@
     </ul>
   </section>
 
+  <!-- ================= FF PANEL ================= -->
   <section id="ff-panel" class="reveal">
-    <div>
+    <div class="panel-boxes">
       <div>A</div>
       <div>B</div>
       <div>C</div>
       <div>D</div>
     </div>
-    <div>
-      <p>• Zone timing mastery</p>
-      <p>• Advanced gloo wall placement</p>
-      <p>• Smart rotation reading</p>
-      <p>• Final zone survival tactics</p>
+    <div class="panel-points">
+      <p>Zone timing mastery</p>
+      <p>Advanced gloo wall placement</p>
+      <p>Smart rotation reading</p>
+      <p>Final zone survival tactics</p>
     </div>
   </section>
 
+  <!-- ================= ACHIEVEMENTS ================= -->
   <section id="achievements" class="reveal">
     <h2>Achievements</h2>
     <ul>
       <li>Mentor of <strong>Sk Sabir Boos</strong></li>
-      <li>Taught <strong>Raister</strong> how to use Gloo Wall professionally</li>
-      <li>New top zone push players emerged from my bootcamp</li>
-      <li>Consistent high-RP placements with survival-based gameplay</li>
+      <li>Taught <strong>Raister</strong> professional gloo wall usage</li>
+      <li>Top zone push players emerged from my bootcamp</li>
+      <li>Consistent high-RP placements with survival gameplay</li>
     </ul>
   </section>
 
+  <!-- ================= BOOTCAMP ================= -->
   <section id="bootcamp" class="reveal">
     <h2>Zone Push Strategy Bootcamp</h2>
     <p>
@@ -97,18 +100,26 @@
       <li>Real match analysis</li>
       <li>Custom zone scenarios</li>
       <li>Gloo wall drills</li>
-      <li>High-RP lobby mindset training</li>
+      <li>High-RP mindset training</li>
     </ul>
     <a href="#contact">📞 Join the Bootcamp</a>
   </section>
 
+  <!-- ================= HIGHLIGHTS (VIDEO) ================= -->
   <section id="highlights" class="reveal">
     <h2>There Is Nothing We Can Do — Napolean</h2>
-    <video controls muted loop playsinline>
+
+    <!-- VIDEO NAME CHECK -->
+    <!-- Your video file MUST be exactly: Napolean.mp4 -->
+    <!-- Case-sensitive on GitHub Pages -->
+
+    <video controls muted loop playsinline width="100%">
       <source src="Napolean.mp4" type="video/mp4">
+      Your browser does not support the video tag.
     </video>
   </section>
 
+  <!-- ================= FAQ ================= -->
   <section id="faq" class="reveal">
     <h2>FAQ</h2>
     <details>
@@ -125,17 +136,22 @@
     </details>
   </section>
 
+  <!-- ================= CONTACT ================= -->
   <section id="contact" class="reveal">
     <h2>Contact</h2>
     <p>Ready to dominate zones and secure wins?</p>
     <a href="mailto:hello@napoleanjr.com">📅 Book a Strategy Call</a>
   </section>
 
+  <!-- ================= FOOTER ================= -->
   <footer>
     <p>© 2025 Napolean Jr.</p>
   </footer>
 
-  <a href="https://wa.me/91XXXXXXXXXX" target="_blank">💬</a>
+  <!-- ================= WHATSAPP FLOAT ================= -->
+  <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="whatsapp-float">
+    💬
+  </a>
 
   <script src="index.js"></script>
 

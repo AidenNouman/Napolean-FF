@@ -32,8 +32,7 @@ nav {
   top: 0;
   left: 0;
   right: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0,0,0,0.85);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(255, 59, 59, 0.25);
   z-index: 999;
@@ -53,7 +52,6 @@ nav a {
   text-decoration: none;
   font-weight: 600;
   position: relative;
-  transition: color 0.25s ease;
 }
 
 nav a::after {
@@ -61,18 +59,18 @@ nav a::after {
   position: absolute;
   left: 0;
   bottom: -6px;
-  width: 0%;
+  width: 0;
   height: 2px;
   background: #ff3b3b;
   transition: width 0.25s ease;
 }
 
-nav a:hover {
-  color: #ff3b3b;
-}
-
 nav a:hover::after {
   width: 100%;
+}
+
+nav a:hover {
+  color: #ff3b3b;
 }
 
 /* =========================
@@ -105,11 +103,7 @@ section {
   border-radius: 50%;
   border: 4px solid #ff3b3b;
   object-fit: cover;
-  box-shadow: 0 0 22px rgba(255, 59, 59, 0.45);
-}
-
-.hero-content {
-  max-width: 600px;
+  box-shadow: 0 0 30px rgba(255, 59, 59, 0.45);
 }
 
 /* =========================
@@ -117,7 +111,7 @@ section {
 ========================= */
 
 h1 {
-  font-size: clamp(2.3rem, 5vw, 3.4rem);
+  font-size: clamp(2.3rem, 5vw, 3.5rem);
   color: #ff3b3b;
   margin-bottom: 10px;
 }
@@ -138,7 +132,6 @@ h2::after {
 }
 
 h3 {
-  color: #fff;
   margin-bottom: 8px;
 }
 
@@ -149,7 +142,6 @@ h3 {
 }
 
 p {
-  font-size: 1.02rem;
   color: #d6d6d6;
   margin-bottom: 12px;
 }
@@ -164,16 +156,16 @@ p {
   padding: 14px 32px;
   background: linear-gradient(135deg, #ff3b3b, #ff0000);
   color: #fff;
-  text-decoration: none;
   font-weight: 700;
+  text-decoration: none;
   border-radius: 50px;
-  box-shadow: 0 0 18px rgba(255, 59, 59, 0.4);
+  box-shadow: 0 0 20px rgba(255, 59, 59, 0.45);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 28px rgba(255, 59, 59, 0.6);
+  box-shadow: 0 0 30px rgba(255, 59, 59, 0.65);
 }
 
 /* =========================
@@ -207,7 +199,7 @@ p {
 }
 
 /* =========================
-   VIDEO
+   VIDEO (NO CROP)
 ========================= */
 
 .video-wrapper {
@@ -215,16 +207,16 @@ p {
   width: 100%;
   aspect-ratio: 16 / 9;
   margin-top: 20px;
+  background: #000;
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(255, 59, 59, 0.2);
-  box-shadow: 0 18px 55px rgba(0,0,0,0.7);
 }
 
 .video-wrapper video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 /* =========================
@@ -240,28 +232,32 @@ details {
 }
 
 summary {
-  font-weight: 700;
-  color: #fff;
   cursor: pointer;
+  font-weight: 700;
 }
 
 /* =========================
-   REVEAL ANIMATION
+   GAMING REVEAL ANIMATION
 ========================= */
 
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: scale(0.96) translateY(18px);
+  filter: blur(2px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease,
+    filter 0.6s ease;
 }
 
 .reveal.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: scale(1) translateY(0);
+  filter: blur(0);
 }
 
 /* =========================
-   WHATSAPP FLOAT
+   WHATSAPP
 ========================= */
 
 .whatsapp-float {
@@ -288,8 +284,8 @@ summary {
 
 footer {
   background: #000;
-  text-align: center;
   padding: 22px;
+  text-align: center;
   color: #aaa;
   border-top: 1px solid rgba(255, 59, 59, 0.25);
 }
